@@ -1,0 +1,46 @@
+html, body { margin: 0; height: 100%; overflow: hidden; background: #05080c; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+#viewport { position: relative; width: 100%; height: 100%; }
+#game { position: absolute; inset: 0; width: 100%; height: 100%; display: block; background: #0e1622; }
+
+/* HUD */
+.hud {
+  position: absolute;
+  top: 16px; left: 16px;
+  display: flex; flex-direction: column; gap: 6px;
+  pointer-events: none;
+}
+.hud-row {
+  display: flex; align-items: baseline; gap: 6px;
+  background: rgba(10, 16, 26, 0.65);
+  padding: 4px 10px; border-radius: 6px;
+  border: 1px solid rgba(139, 147, 163, 0.35);
+  backdrop-filter: blur(4px);
+  min-width: 92px;
+}
+.hud-label { color: var(--hud-dim, #8b93a3); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; }
+.hud-value { color: var(--hud-text, #eef1f5); font-size: 17px; font-variant-numeric: tabular-nums; font-weight: 600; min-width: 34px; }
+.hud-unit { color: var(--hud-dim, #8b93a3); font-size: 12px; margin-left: 2px; white-space: nowrap; }
+
+/* Overlays */
+.overlay {
+  position: absolute; inset: 0; display: none; align-items: center; justify-content: center;
+  background: rgba(5, 8, 12, 0.55); backdrop-filter: blur(6px);
+}
+.panel {
+  background: rgba(16, 24, 36, 0.9);
+  border: 1px solid rgba(139, 147, 163, 0.45);
+  border-radius: 12px;
+  padding: 34px 44px;
+  color: var(--hud-text, #eef1f5);
+  text-align: center;
+  min-width: 320px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+.panel h1 { margin: 0 0 10px; font-size: 34px; letter-spacing: 0.06em; color: #eef1f5; }
+.panel h1[style*="warn"] { color: var(--hud-warn, #ff5f5f); }
+.panel h1[style*="ok"] { color: #22ffbb; }
+.panel .sub { color: var(--hud-dim, #8b93a3); font-size: 12px; margin: 6px 0 16px; }
+.panel .keys { color: var(--hud-dim, #8b93a3); font-size: 11.5px; margin: 0 0 18px; line-height: 1.6; }
+.panel .prompt { color: #22ffbb; font-size: 15px; margin: 0; font-weight: 600; }
+
+:root { --warn: #ff5f5f; --ok: #22ffbb; --hud-text: #eef1f5; --hud-dim: #8b93a3; --hud-warn: #ff5f5f; }

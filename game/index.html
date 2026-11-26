@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skydrift — flight game</title>
+<link rel="stylesheet" href="./src/ui.css">
+</head>
+<body>
+<div id="viewport">
+  <canvas id="game" aria-label="Skydrift: fly through the glowing rings, then land on the runway"></canvas>
+
+  <!-- HUD: altitude, speed, heading, fuel, score, rings (always in play). -->
+  <div id="hud" class="hud">
+    <div class="hud-row"><span class="hud-label">ALT</span><span id="hud-alt" class="hud-value">0</span><span class="hud-unit">m</span></div>
+    <div class="hud-row"><span class="hud-label">SPD</span><span id="hud-spd" class="hud-value">0</span><span class="hud-unit">km/h</span></div>
+    <div class="hud-row"><span class="hud-label">HDG</span><span id="hud-hdg" class="hud-value">0</span><span class="hud-unit">deg</span></div>
+    <div class="hud-row"><span class="hud-label">FUEL</span><span id="hud-fuel" class="hud-value">100</span><span class="hud-unit">%</span></div>
+    <div class="hud-row"><span class="hud-label">SCORE</span><span id="hud-score" class="hud-value">0</span></div>
+    <div class="hud-row"><span class="hud-label">RINGS</span><span id="hud-rings" class="hud-value">0/8</span></div>
+  </div>
+
+  <div id="screen-title" class="overlay">
+    <div class="panel">
+      <h1>Skydrift</h1>
+      <p class="sub">A procedural flight game. Chase camera, lit instruments, terrain, lake, runway.</p>
+      <p class="keys">Throttle: W/S &nbsp;·&nbsp; Pitch: &uarr;&darr; &nbsp;·&nbsp; Roll: A/D &nbsp;·&nbsp; Yaw: Q/E &nbsp;·&nbsp; Mouse: steer &nbsp;·&nbsp; Pause: P</p>
+      <p class="prompt">Press Space to start</p>
+    </div>
+  </div>
+
+  <div id="screen-paused" class="overlay">
+    <div class="panel">
+      <h1>Paused</h1>
+      <p class="prompt">Press P to resume</p>
+    </div>
+  </div>
+
+  <div id="screen-over" class="overlay">
+    <div class="panel">
+      <h1 style="color:var(--warn)">Crash</h1>
+      <p>Final score: <span id="over-final">0</span> &nbsp;·&nbsp; Best: <span id="over-best">0</span></p>
+      <p class="prompt">Press Space to fly again</p>
+    </div>
+  </div>
+
+  <div id="screen-complete" class="overlay">
+    <div class="panel">
+      <h1 style="color:var(--ok)">Mission Complete</h1>
+      <p>Landed on the runway. Score: <span id="complete-score">0</span></p>
+      <p class="prompt">Press Space to fly again</p>
+    </div>
+  </div>
+</div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
