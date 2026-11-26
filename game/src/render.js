@@ -6,8 +6,22 @@ import { WORLD, RUNWAY, LAKE, RING, PALETTE } from './config.js';
 
 const TERRAIN_SEG = 56;
 
-export function createRenderer(canvas) {
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+export async function createRenderer(canvas) {
+  // The headless GPU/SwiftShader process can take a few seconds to become
+  // ready after a page load. Retry the WebGL context creation until it
+  // succeeds so the game reliably initialises on file://.
+  let renderer;
+  let lastErr;
+  for (let attempt = 0; attempt < 80; attempt += 1) {
+    try {
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+      break;
+    } catch (e) {
+      lastErr = e;
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    }
+  }
+  if (!renderer) throw lastErr;
   renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.setClearColor(new THREE.Color(PALETTE.sky));
